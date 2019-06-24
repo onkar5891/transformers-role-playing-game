@@ -1,0 +1,53 @@
+          ▄▄▄▄▄▄▄▄▄
+       ▄█████████████▄       
+▐███▌ █████████████████ ▐███▌
+ ████▄ ▀███▄     ▄███▀ ▄████ 
+ ▐█████▄ ▀███▄ ▄███▀ ▄█████▌ 
+  ██▄▀███▄ ▀█████▀ ▄███▀▄██  
+  ▐█▀█▄▀███ ▄ ▀ ▄ ███▀▄█▀█▌  
+   ██▄▀█▄██ ██▄██ ██▄█▀▄██   
+    ▀██▄▀██ █████ ██▀▄██▀    
+   ▄  ▀████ █████ ████▀  ▄   
+   ██        ███        ██   
+   ██▄    ▄█ ███ █▄    ▄██   
+   ████ ▄███ ███ ███▄ ████   
+   ████ ████ ███ ████ ████   
+   ████ ████ ███ ████ ████   
+   ████ ████▄▄▄▄▄████ ████   
+   ▀███ █████████████ ███▀   
+     ▀█ ███ ▄▄▄▄▄ ███ █▀     
+        ▀█▌▐█████▌▐█▀        
+           ███████           
+
+Transformers Role Playing Game ©
+
+Story Line:
+A great battle took place between the Autobots and the Decepticons
+over the possession of the Cube on Cybertron, the home planet of
+Transformers. Megatron, the leader of Decepticons, was able to
+escape with the Cube on Earth, the home planet of Humans. With him
+was dangerous Slipstream, a female Decepticon, who helped him do so.
+Fortunately, there exists a true Warrior Autobot (you) on Earth
+whom Optimus Prime has already communicated about this situation.
+
+Your MISSION: Kill them both and take the Cube.
+(Beware of their weapons!)
+
+-----------------------------------------------------------
+| Decepticon                 | Weapon | Impact | Accuracy |
+| Megatron                   | Rifle  | 30     | 80%      |
+| Megatron                   | Sword  | 20     | 90%      |
+| Megatron as 'Giant Cannon' | -      | 50     | 100%     |
+| Slipstream                 | Rifle  | 20     | 80%      |
+| Slipstream                 | Sword  | 20     | 80%      |
+| Slipstream as 'Jet'        | -      | 20     | 100%     |
+-----------------------------------------------------------
+
+You can move on the Battlefield to reach them, and can Attack,
+Defend, Stay Still or Retreat. Make sure that Staying Still on the
+battlefield or Retreating has an added advantage to the enemy. Only
+your health will be affected in this case. During the battle, you
+can save the state by selecting '0' (hidden option), and load it
+back from the main menu.
+
+Go Ahead, Warrior!

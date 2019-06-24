@@ -1,0 +1,53 @@
+          ▄▄▄▄▄▄▄▄▄
+       ▄█████████████▄       
+▐███▌ █████████████████ ▐███▌
+ ████▄ ▀███▄     ▄███▀ ▄████ 
+ ▐█████▄ ▀███▄ ▄███▀ ▄█████▌ 
+  ██▄▀███▄ ▀█████▀ ▄███▀▄██  
+  ▐█▀█▄▀███ ▄ ▀ ▄ ███▀▄█▀█▌  
+   ██▄▀█▄██ ██▄██ ██▄█▀▄██   
+    ▀██▄▀██ █████ ██▀▄██▀    
+   ▄  ▀████ █████ ████▀  ▄   
+   ██        ███        ██   
+   ██▄    ▄█ ███ █▄    ▄██   
+   ████ ▄███ ███ ███▄ ████   
+   ████ ████ ███ ████ ████   
+   ████ ████ ███ ████ ████   
+   ████ ████▄▄▄▄▄████ ████   
+   ▀███ █████████████ ███▀   
+     ▀█ ███ ▄▄▄▄▄ ███ █▀     
+        ▀█▌▐█████▌▐█▀        
+           ███████           
+
+Transformers Role Playing Game ©
+
+[36mStory Line:[0m
+A great battle took place between the Autobots and the Decepticons
+over the possession of the Cube on Cybertron, the home planet of
+Transformers. Megatron, the leader of Decepticons, was able to
+escape with the Cube on Earth, the home planet of Humans. With him
+was dangerous Slipstream, a female Decepticon, who helped him do so.
+Fortunately, there exists a true Warrior Autobot (you) on Earth
+whom Optimus Prime has already communicated about this situation.
+
+[32mYour MISSION: Kill them both and take the Cube.[0m
+[31m(Beware of their weapons!)[0m
+
+-----------------------------------------------------------
+| Decepticon                 | Weapon | Impact | Accuracy |
+| Megatron                   | Rifle  | 30     | 80%      |
+| Megatron                   | Sword  | 20     | 90%      |
+| Megatron as 'Giant Cannon' | -      | 50     | 100%     |
+| Slipstream                 | Rifle  | 20     | 80%      |
+| Slipstream                 | Sword  | 20     | 80%      |
+| Slipstream as 'Jet'        | -      | 20     | 100%     |
+-----------------------------------------------------------
+
+You can move on the Battlefield to reach them, and can [32mAttack[0m,
+[32mDefend[0m, [31mStay Still[0m or [31mRetreat[0m. Make sure that Staying Still on the
+battlefield or Retreating has an added advantage to the enemy. Only
+your health will be affected in this case. During the battle, you
+can [32msave the state by selecting '0' (hidden option)[0m, and load it
+back from the main menu.
+
+[36mGo Ahead, Warrior![0m
