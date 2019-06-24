@@ -1,4 +1,4 @@
-package org.hasbro.transformers.feature;
+package org.hasbro.transformers.integration;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -27,7 +27,7 @@ import static org.hasbro.transformers.utils.MessageReader.resetScanner;
 import static org.hasbro.transformers.utils.RPGSettings.freePath;
 import static org.junit.Assert.*;
 
-public class TransformersRPGFeatureSteps {
+public class PlayerBattlefieldInteractionFeatureSteps {
     private final Cybertronian player = anAutobot();
     private final Cybertronian legendaryPlayer = aLegendaryAutobot();
     private final CybertronResource amateurDecepticon = anAmateurDecepticon();
@@ -110,7 +110,7 @@ public class TransformersRPGFeatureSteps {
         }
     }
 
-    @When("Player moves next to the enemy with sequences \"([^\"]*)\" and consistently stays still next to enemy who is on \"([^\"]*)\" side")
+    @When("Player moves with sequences \"([^\"]*)\" and consistently stays still next to enemy who is on \"([^\"]*)\" side")
     public void playerConsistentlyStaysStill(String sequences, String enemyPosition) {
         String[] splitSequences = sequences.split(",");
         String[] playerFightModes = { "STAY_STILL", "STAY_STILL" };

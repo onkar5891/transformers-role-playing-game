@@ -8,6 +8,7 @@ import org.hasbro.transformers.resource.Weapon;
 
 import java.util.Arrays;
 
+import static java.util.Objects.requireNonNull;
 import static org.hasbro.transformers.activity.menu.player.PlayerCharacteristics.*;
 import static org.hasbro.transformers.resource.Allegiance.AUTOBOT;
 
@@ -17,12 +18,12 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
 
     private String characterName;
     private Gender gender;
-    private int riflePower;
-    private float rifleAccuracy;
-    private int swordPower;
-    private float swordAccuracy;
+    private Integer riflePower;
+    private Float rifleAccuracy;
+    private Integer swordPower;
+    private Float swordAccuracy;
     private String transformedIdentity;
-    private int transformedPowerImpact;
+    private Integer transformedPowerImpact;
 
     @Override
     public void show() {
@@ -31,12 +32,12 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
         genderMenuChooser.load();
         gender = genderMenuChooser.getItem();
 
-        riflePower = Integer.parseInt(RIFLE_POWER_QUESTION.ask());
-        rifleAccuracy = Float.parseFloat(RIFLE_ACCURACY_QUESTION.ask());
-        swordPower = Integer.parseInt(SWORD_POWER_QUESTION.ask());
-        swordAccuracy = Float.parseFloat(SWORD_ACCURACY_QUESTION.ask());
+        riflePower = Integer.valueOf(RIFLE_POWER_QUESTION.ask());
+        rifleAccuracy = Float.valueOf(RIFLE_ACCURACY_QUESTION.ask());
+        swordPower = Integer.valueOf(SWORD_POWER_QUESTION.ask());
+        swordAccuracy = Float.valueOf(SWORD_ACCURACY_QUESTION.ask());
         transformedIdentity = ALTERNATE_MODE_IDENTITY_QUESTION.ask();
-        transformedPowerImpact = Integer.parseInt(ALTERNATE_MODE_POWER_IMPACT_QUESTION.ask());
+        transformedPowerImpact = Integer.valueOf(ALTERNATE_MODE_POWER_IMPACT_QUESTION.ask());
 
         navigator.onPlayerCreated();
     }
@@ -48,6 +49,8 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
 
     @Override
     public Cybertronian getPlayer() {
+        requirePlayerDetails();
+
         return new CybertronResource(
             characterName,
             gender,
@@ -60,5 +63,16 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
             true,
             true
         );
+    }
+
+    private void requirePlayerDetails() {
+        requireNonNull(characterName);
+        requireNonNull(gender);
+        requireNonNull(riflePower);
+        requireNonNull(rifleAccuracy);
+        requireNonNull(swordPower);
+        requireNonNull(swordAccuracy);
+        requireNonNull(transformedIdentity);
+        requireNonNull(transformedPowerImpact);
     }
 }

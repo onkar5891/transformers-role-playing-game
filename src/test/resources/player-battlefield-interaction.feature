@@ -1,4 +1,4 @@
-Feature: Transformers Role Playing Game
+Feature: Player's interaction on battlefield
 
   Scenario: Player is able to move on the battlefield freely
     Given A one on one battlefield
@@ -12,5 +12,5 @@ Feature: Transformers Role Playing Game
 
   Scenario: Player looses
     Given A one on one battlefield with legendary decepticon and normal autobot
-    When Player moves next to the enemy with sequences "UP,RIGHT,DOWN,DOWN,LEFT,LEFT,UP" and consistently stays still next to enemy who is on "UP" side
+    When Player moves with sequences "UP,RIGHT,DOWN,DOWN,LEFT,LEFT,UP" and consistently stays still next to enemy who is on "UP" side
     Then Player should be defeated by the enemy

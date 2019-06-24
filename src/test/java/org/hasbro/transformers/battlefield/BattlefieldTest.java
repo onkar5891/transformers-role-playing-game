@@ -34,6 +34,25 @@ public class BattlefieldTest {
     }
 
     @Test
+    public void shouldCreateBattlefieldAndEnsurePlayerAndEnemyExists() {
+        battlefield = Battlefield.create(player);
+        assertNotNull(battlefield.findPlayerPosition());
+        assertTrue(battlefield.shouldBattleContinue());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void shouldIdentifyErroneousConditionOnBattlefieldCreation() {
+        battlefield = Battlefield.create(decepticon);
+        battlefield.findPlayerPosition();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void shouldIdentifyErroneousConditionOnBattlefieldRestore() {
+        List<List<Cybertronian>> resources = createStructureOneOnOne(decepticon, decepticon);
+        battlefield = Battlefield.restore(resources);
+    }
+
+    @Test
     public void shouldContinueTheBattleIfOpponentsAreAlive() {
         assertTrue(battlefield.shouldBattleContinue());
     }

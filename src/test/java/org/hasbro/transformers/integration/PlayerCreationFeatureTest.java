@@ -1,8 +1,8 @@
-package org.hasbro.transformers.feature;
+package org.hasbro.transformers.integration;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import org.hasbro.transformers.utils.RandomUtils;
+import org.hasbro.transformers.factory.TransformersRPGFactory;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -10,7 +10,7 @@ import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(Cucumber.class)
-@PrepareForTest(RandomUtils.class)
-@CucumberOptions(features = "src/test/resources/transformers-rpg.feature")
-public class TransformersRPGFeatureTest {
+@CucumberOptions(features = "src/test/resources/player-creation.feature")
+@PrepareForTest(TransformersRPGFactory.class)
+public class PlayerCreationFeatureTest {
 }

@@ -20,20 +20,37 @@
       - If console supports ANSI colors, use **``java -DprettyPrint=true -jar target/transformers-rpg.jar``**
       - Otherwise, launch it as  **``mvn exec:java -Dexec.mainClass=org.hasbro.transformers.TransformersRPG -DprettyPrint``**
 
+### Definitions
+  * Autobot - User Player
+  * Decepticons - CPU Player
+
 ### Features
-  * Create player character **(An Autobot)**
+  * Create player **(An Autobot)**
     - Provides default values so that if player is happy with predefined configuration, he/she can hit the Return key directly
     - Some of the configurations include Name, Gender, Weapons, Alternate Mode
-  * Fair play (available to both User player [Autobot] and CPU player [Decepticon])
+  * Fair play (available to both **Autobot** and CPU player **Decepticon**)
     - Before attacking, CPU chooses any of the available weapons or the transformer's deadly attack: **BY TRANSFORMING**
     - Health reward after killing an opponent
   * Save/Load battlefield state
     - After creating An Autobot, obviously mission of the player is started and is placed on the battlefield
     - From this point, player can save the state by choosing '0' (hidden option) from the menu
     - If player has lost after saving the state, the game can be relaunched and same state can be loaded
+  * Color mode (But not important)
+    - This is my personal choice as I like to see different texts with different colors on terminal
+    - So, I decided to invested some hours on this and came up with four colors viz., RED, GREEN, CYAN, BLACK for the game
 
 ### Extensions
-  * Multiple levels
-  * Suicidal places (like Fire) on the battlefield
-  * Hidden rewards (like Health Booster, Weapons) on the battlefield
-  * Decepticon to retreat as well
+  * Suicidal places on the battlefield
+    - Imagine there is fire on some locations of battlefield
+    - In this case, if user tries to go inside the fire, player's health needs to be reduced
+  * Hidden rewards on the battlefield
+    - If we add one more enemy on the battlefield, it would be a One vs Three battle
+    - So, for better fair play, there can be some locations on battlefield where health rewards, weapons are present
+    - Player needs to identify the best path by which all enemies can be defeated
+  * Decepticons to retreat as well
+    - As of now, only player is given an option to retreat
+    - Currently, decepticon is able to defend Autobot's attack, choose weapon and attack, or transform and attack randomly
+    - But in some cases, decepticon, too may retreat which will be added advantage to Autobot
+  * Post level completion
+    - After winning the level, post level actions like weapons getting more stronger, giving Autobot another mission
+    - This is required for better engagement of user with the game

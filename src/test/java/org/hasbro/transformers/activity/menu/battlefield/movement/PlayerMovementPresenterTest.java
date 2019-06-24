@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 
 import static org.hasbro.transformers.RPGTestData.anAutobot;
 import static org.hasbro.transformers.RPGTestData.createStructureOneOnOne;
+import static org.hasbro.transformers.utils.RPGSettings.decepticonJet;
 import static org.hasbro.transformers.utils.RPGSettings.megatron;
 import static org.junit.Assert.assertEquals;
 
@@ -19,11 +20,12 @@ public class PlayerMovementPresenterTest {
     private Battlefield battlefield;
     private int totalRowsInBattlefield;
     private int totalColumnsInBattlefield;
-    private PlayerMovementView.Navigator playerMovementPresenter;
+    private Cybertronian player;
+    private PlayerMovementPresenter playerMovementPresenter;
 
     @Before
     public void setUp() {
-        Cybertronian player = anAutobot();
+        player = anAutobot();
         Cybertronian decepticon = megatron();
 
         List<List<Cybertronian>> resources = createStructureOneOnOne(player, decepticon);
@@ -72,5 +74,29 @@ public class PlayerMovementPresenterTest {
         Position newPosition = battlefield.findPlayerPosition();
         assertEquals(1, newPosition.getRow());
         assertEquals(2, newPosition.getColumn());
+    }
+
+    @Test
+    public void shouldNotMoveIfPlayerWasRetreatedFromLastBattle() {
+        player.retreat();
+        Position currentPosition = battlefield.findPlayerPosition();
+        playerMovementPresenter.onMovedRight(currentPosition);
+
+        Position newPosition = battlefield.findPlayerPosition();
+        assertEquals(currentPosition, newPosition);
+    }
+
+    @Test
+    public void shouldNotMoveIfBlockerExistsOnThePath() {
+        List<List<Cybertronian>> resources = createStructureOneOnOne(player, decepticonJet());
+        battlefield = Battlefield.restore(resources);
+
+        Position currentPosition = battlefield.findPlayerPosition();
+        playerMovementPresenter.onMovedLeft(currentPosition);
+
+        Position nextPosition = battlefield.findPlayerPosition();
+        playerMovementPresenter.onMovedUp(nextPosition);
+
+        assertEquals(nextPosition, battlefield.findPlayerPosition());
     }
 }

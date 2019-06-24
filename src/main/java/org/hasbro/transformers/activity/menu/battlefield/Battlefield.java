@@ -97,7 +97,7 @@ public class Battlefield implements Savable {
                 .boxed()
                 .flatMap(row -> positionStream(row, playerStreamInColumns(resources.get(row))))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException(format("{0} not found on battlefield", player.getName())));
+                .orElseThrow(() -> new IllegalStateException("Player not found on battlefield"));
     }
 
     private void changePlayerPosition(Position currentPosition, Position newPosition) {
@@ -124,7 +124,7 @@ public class Battlefield implements Savable {
     }
 
     private IntStream playerStreamInColumns(List<Cybertronian> resources) {
-        return range(0, resources.size()).filter(left -> resources.get(left).equals(player));
+        return range(0, resources.size()).filter(left -> resources.get(left).isControlledByPlayer());
     }
 
     private boolean inRange(Position position) {
