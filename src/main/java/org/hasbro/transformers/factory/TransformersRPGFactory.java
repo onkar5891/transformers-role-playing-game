@@ -18,7 +18,6 @@ import org.hasbro.transformers.utils.RandomUtils;
 import java.util.List;
 
 public class TransformersRPGFactory {
-
     private TransformersRPGFactory() {
         // No-arg constructor
     }
@@ -46,5 +45,4 @@ public class TransformersRPGFactory {
     public static GameStateSerializer<List<List<Cybertronian>>> battleFieldSerializer() {
         return BattlefieldStateSerializer.getInstance();
     }
-
 }

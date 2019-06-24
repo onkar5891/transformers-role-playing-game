@@ -48,6 +48,7 @@ public class MessageWriter {
     public enum ColorMode {
         RED("\u001b[31m"), GREEN("\u001b[32m"), CYAN("\u001b[36m");
 
+        public static final String RESET = "\u001b[0m";
         private String color;
 
         ColorMode(String color) {
@@ -55,7 +56,7 @@ public class MessageWriter {
         }
 
         private static String reset() {
-            return "\u001b[0m";
+            return RESET;
         }
     }
 }

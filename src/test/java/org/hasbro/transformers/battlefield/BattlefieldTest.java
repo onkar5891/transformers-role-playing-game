@@ -60,22 +60,35 @@ public class BattlefieldTest {
 
     @Test
     public void shouldSaveAndRestoreTheStateOfBattlefield() {
-        Path path = Paths.get("/tmp/test-transformers-state.rpg");
+        Path dir = Paths.get("/tmp/transformers-rpg");
+        createBaseDir(dir);
+
+        Path path = Paths.get(dir.toString(), "test-transformers-state.rpg");
 
         battlefield.setPath(path);
         battlefield.saveState();
 
         Battlefield restoredBattlefield = restoreBattlefield(path);
-
         Position position = battlefield.findPlayerPosition();
         Position restoredPosition = restoredBattlefield.findPlayerPosition();
-
         assertEquals(position, restoredPosition);
 
+        deleteStateFile(path);
+    }
+
+    private void deleteStateFile(Path path) {
         try {
             Files.delete(path);
         } catch (IOException e) {
             println("Could not delete RPG state file");
+        }
+    }
+
+    private void createBaseDir(Path dir) {
+        try {
+            Files.createDirectories(dir);
+        } catch (IOException e) {
+            println("Could not create directories");
         }
     }
 }

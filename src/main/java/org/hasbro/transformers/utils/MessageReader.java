@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import static org.hasbro.transformers.utils.MessageWriter.println;
 import static org.hasbro.transformers.utils.RPGSettings.inputMode;
@@ -31,8 +32,8 @@ public class MessageReader {
     }
 
     public static void readFromFile(Path path, String messageOnError) {
-        try {
-            Files.lines(path).forEach(MessageWriter::println);
+        try (Stream<String> lines = Files.lines(path)) {
+            lines.forEach(MessageWriter::println);
         } catch (IOException e) {
             println(messageOnError);
         }

@@ -7,7 +7,7 @@
     * Fast (Skip tests)
       - **``mvn clean install -DskipTests``**
 
-  * Run the game
+  * Run the game (Paths are relative to home directory of the project)
     * Normal Mode
       - **``java -jar target/transformers-rpg.jar``**
     * Prettier Mode
@@ -17,7 +17,8 @@
         * identify enemies on battlefield
         * identify attacks made by him/her or the enemy and the impact caused
         * and more..
-      - **``java -DprettyPrint=true -jar target/transformers-rpg.jar``**
+      - If console supports ANSI colors, use **``java -DprettyPrint=true -jar target/transformers-rpg.jar``**
+      - Otherwise, launch it as  **``mvn exec:java -Dexec.mainClass=org.hasbro.transformers.TransformersRPG -DprettyPrint``**
 
 ### Features
   * Create player character **(An Autobot)**

@@ -23,7 +23,7 @@ public class FightMenuPresenter implements Presenter, FightView.Navigator, Fight
 
     @Override
     public void init() {
-        prettyPrintln(CYAN, "\n--- THE BATTLE HAS BEGUN ---");
+        prettyPrintln(CYAN, "\n--- A BATTLE HAS BEGUN ---");
 
         String playerInfo = format("{0} {1} ({2})", player.getGender(), player.getName(), player.getHealth());
         String enemyInfo = format("{0} {1} ({2})", enemy.getGender(), enemy.getName(), enemy.getHealth());

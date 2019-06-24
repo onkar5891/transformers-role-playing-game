@@ -1,6 +1,7 @@
 package org.hasbro.transformers.resource;
 
 import org.hasbro.transformers.activity.menu.player.Gender;
+import org.hasbro.transformers.utils.RPGSettings;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +18,7 @@ import static org.hasbro.transformers.utils.RPGSettings.shouldPrettyPrint;
 import static org.hasbro.transformers.utils.StreamUtils.evaluateTernaryViaFunction;
 
 public class CybertronResource implements Cybertronian {
-    private final int PRETTIER_DISPLAY_LIMIT = 15;
+    private static final int PRETTIER_DISPLAY_LIMIT = 15;
 
     private String name;
     private Gender gender;
@@ -94,7 +95,7 @@ public class CybertronResource implements Cybertronian {
 
     @Override
     public void boostHealth() {
-        health = Math.min(100, health + HEALTH_BOOSTER);
+        health = Math.min(100, health + RPGSettings.HEALTH_BOOSTER);
     }
 
     @Override
@@ -210,7 +211,7 @@ public class CybertronResource implements Cybertronian {
         if (!prey.isAlive()) {
             prettyPrintln(RED, format("\n{0} is dead", prey.getName()));
             boostHealth();
-            prettyPrintln(GREEN, format("Health of {0} got boosted by {1}, New Health is {2}", this.name, HEALTH_BOOSTER, this.health));
+            prettyPrintln(GREEN, format("Health of {0} got boosted by {1}, New Health is {2}", this.name, RPGSettings.HEALTH_BOOSTER, this.health));
         }
     }
 
@@ -227,9 +228,9 @@ public class CybertronResource implements Cybertronian {
 
     private String paddedOrTruncated() {
         return evaluateTernaryViaFunction(
-            name -> name.substring(0, PRETTIER_DISPLAY_LIMIT),
-            name -> name + IntStream.rangeClosed(1, PRETTIER_DISPLAY_LIMIT - name.length()).boxed().map(i -> " ").collect(Collectors.joining()),
-            name -> name.length() > PRETTIER_DISPLAY_LIMIT,
+            cName -> cName.substring(0, PRETTIER_DISPLAY_LIMIT),
+            cName -> cName + IntStream.rangeClosed(1, PRETTIER_DISPLAY_LIMIT - cName.length()).boxed().map(i -> " ").collect(Collectors.joining()),
+            cName -> cName.length() > PRETTIER_DISPLAY_LIMIT,
             this.name
         );
     }

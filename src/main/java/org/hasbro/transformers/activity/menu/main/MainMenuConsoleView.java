@@ -17,7 +17,6 @@ public class MainMenuConsoleView implements MainMenuView {
 
     @Override
     public void show() {
-        out:
         while (true) {
             loadStoryLine();
             mainMenuMenuChooser.load();
@@ -31,7 +30,7 @@ public class MainMenuConsoleView implements MainMenuView {
                     break;
                 case EXIT:
                     prettyPrintln(MessageWriter.ColorMode.CYAN, "\nThank you!");
-                    break out;
+                    return;
             }
         }
     }

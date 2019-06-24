@@ -19,7 +19,11 @@ import static org.hasbro.transformers.activity.menu.player.Gender.MALE;
 import static org.hasbro.transformers.resource.Allegiance.DECEPTICON;
 
 public class RPGSettings {
-    public static Path DEFAULT_PATH = Paths.get("/tmp/transformers-state.rpg");
+    // Default health booster after killing opponent
+    // But can be made dynamic based on the strength of killed opponent
+    public static final int HEALTH_BOOSTER = 25;
+
+    public static final Path DEFAULT_PATH = Paths.get("/tmp/transformers-rpg/transformers-state.rpg");
 
     private RPGSettings() {
     }

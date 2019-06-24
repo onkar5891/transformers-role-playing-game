@@ -6,7 +6,8 @@ import java.time.DayOfWeek;
 import java.util.Map;
 
 import static org.hasbro.transformers.utils.StreamUtils.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StreamUtilsTest {
     @Test

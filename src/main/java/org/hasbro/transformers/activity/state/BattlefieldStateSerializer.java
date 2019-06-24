@@ -3,6 +3,7 @@ package org.hasbro.transformers.activity.state;
 import org.hasbro.transformers.resource.Cybertronian;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
@@ -28,10 +29,14 @@ public final class BattlefieldStateSerializer implements GameStateSerializer<Lis
 
     @Override
     public void serialize(List<List<Cybertronian>> state, Path path) {
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(path.toFile()))) {
-            objectOutputStream.writeObject(state);
+        Path baseDir = path.getParent();
+        try {
+            Files.createDirectories(baseDir);
+            try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(path.toFile()))) {
+                objectOutputStream.writeObject(state);
+            }
         } catch (IOException e) {
-            println("Error in saving battlefield state");
+            println("Error in saving state");
         }
     }
 

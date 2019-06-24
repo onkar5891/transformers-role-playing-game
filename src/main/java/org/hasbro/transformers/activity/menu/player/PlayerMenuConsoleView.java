@@ -13,7 +13,6 @@ import static org.hasbro.transformers.resource.Allegiance.AUTOBOT;
 
 public class PlayerMenuConsoleView implements PlayerMenuView {
     private MenuChooser<Gender> genderMenuChooser = new MenuChooser<>("Choose Gender", Gender.values());
-    private Cybertronian resource;
     private Navigator navigator;
 
     private String characterName;

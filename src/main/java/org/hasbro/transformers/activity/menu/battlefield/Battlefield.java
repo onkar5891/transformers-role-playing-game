@@ -14,8 +14,8 @@ import static java.text.MessageFormat.format;
 import static java.util.stream.IntStream.range;
 import static org.hasbro.transformers.factory.TransformersRPGFactory.battleFieldSerializer;
 import static org.hasbro.transformers.factory.TransformersRPGFactory.fightMenuPresenter;
-import static org.hasbro.transformers.utils.MessageWriter.*;
 import static org.hasbro.transformers.utils.MessageWriter.ColorMode.GREEN;
+import static org.hasbro.transformers.utils.MessageWriter.*;
 import static org.hasbro.transformers.utils.RPGSettings.*;
 
 public class Battlefield implements Savable {

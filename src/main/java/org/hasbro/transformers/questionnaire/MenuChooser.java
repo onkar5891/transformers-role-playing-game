@@ -1,5 +1,7 @@
 package org.hasbro.transformers.questionnaire;
 
+import org.hasbro.transformers.utils.MessageWriter;
+
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -61,7 +63,7 @@ public class MenuChooser<T extends Enum> {
     }
 
     private void loadItems() {
-        Stream.of(menuItems).map(menuItemFn).forEach(System.out::println);
+        Stream.of(menuItems).map(menuItemFn).forEach(MessageWriter::println);
     }
 
     private void loadHeader() {

@@ -6,10 +6,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface Cybertronian extends Serializable {
-    // Default health booster after killing opponent
-    // But can be made dynamic based on the strength of killed opponent
-    int HEALTH_BOOSTER = 25;
-
     String getName();
 
     // Name of Cybertronians may be big or small
