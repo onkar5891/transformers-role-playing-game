@@ -4,7 +4,7 @@
   * **INSTALL**
     * Slow *(You want to ensure everything is working!)*
       - **``mvn clean install``**
-    * Fast *(You are desperate to play the game ASAP!)*
+    * Fast *(You are desperate to play the game!)*
       - **``mvn clean install -DskipTests``**
 
   * **RUN**
