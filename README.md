@@ -20,8 +20,7 @@
       - Otherwise, launch it as  **``mvn exec:java -Dexec.mainClass=org.hasbro.transformers.TransformersRPG -DprettyPrint``**
 
 ## Definitions
-  > **Autobot** - User Player
-  > **Decepticon** - CPU Player
+  > **Autobot** - User Player, **Decepticon** - CPU Player
 
 ## Features
   * **Create player (An Autobot)**
