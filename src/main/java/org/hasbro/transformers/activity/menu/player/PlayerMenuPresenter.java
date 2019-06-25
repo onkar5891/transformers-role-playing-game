@@ -7,7 +7,7 @@ import org.hasbro.transformers.resource.Cybertronian;
 import org.hasbro.transformers.utils.RPGSettings;
 
 public class PlayerMenuPresenter implements Presenter, PlayerMenuView.Navigator {
-    private PlayerMenuView playerMenuView;
+    private final PlayerMenuView playerMenuView;
 
     public PlayerMenuPresenter(PlayerMenuView playerMenuView) {
         this.playerMenuView = playerMenuView;

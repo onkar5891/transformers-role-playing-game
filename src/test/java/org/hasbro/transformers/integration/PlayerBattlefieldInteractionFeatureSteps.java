@@ -13,7 +13,6 @@ import org.hasbro.transformers.resource.CybertronResource;
 import org.hasbro.transformers.resource.Cybertronian;
 import org.hasbro.transformers.utils.StreamUtils;
 
-import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -21,6 +20,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.hasbro.transformers.RPGTestData.*;
+import static org.hasbro.transformers.integration.FeatureUtils.populateStream;
+import static org.hasbro.transformers.integration.FeatureUtils.resetStream;
 import static org.hasbro.transformers.utils.MessageReader.resetScanner;
 import static org.hasbro.transformers.utils.RPGSettings.freePath;
 import static org.junit.Assert.*;
@@ -87,7 +88,7 @@ public class PlayerBattlefieldInteractionFeatureSteps implements En {
 
     @After
     public void afterScenario() {
-        System.setIn(System.in);
+        resetStream();
     }
 
     private void createOneOnOneBattlefield() {
@@ -125,8 +126,7 @@ public class PlayerBattlefieldInteractionFeatureSteps implements En {
         Map<String, Integer> mappedMenuOptions = StreamUtils.mapAsMenuOptions(Movement.values());
 
         String joined = String.join(System.lineSeparator(), Stream.of(splitSequences).map(seq -> mappedMenuOptions.get(seq).toString()).toArray(String[]::new));
-        ByteArrayInputStream interactiveStream = new ByteArrayInputStream(joined.getBytes());
-        System.setIn(interactiveStream);
+        populateStream(joined);
 
         try {
             new PlayerMovementPresenter(new PlayerMovementConsoleView(battleField), battleField).init();
@@ -140,8 +140,7 @@ public class PlayerBattlefieldInteractionFeatureSteps implements En {
         String[] playerFightModes = { "ATTACK", "ATTACK" };
         Stream<String> consoleInputs = prepareConsoleStream(enemyPosition, splitSequences, playerFightModes);
 
-        ByteArrayInputStream interactiveStream = new ByteArrayInputStream(consoleInputs.collect(Collectors.joining(System.lineSeparator())).getBytes());
-        System.setIn(interactiveStream);
+        populateStream(consoleInputs.collect(Collectors.joining(System.lineSeparator())));
 
         try {
             new PlayerMovementPresenter(new PlayerMovementConsoleView(battleField), battleField).init();
@@ -155,8 +154,7 @@ public class PlayerBattlefieldInteractionFeatureSteps implements En {
         String[] playerFightModes = { "STAY_STILL", "STAY_STILL" };
         Stream<String> consoleInputs = prepareConsoleStream(enemyPosition, splitSequences, playerFightModes);
 
-        ByteArrayInputStream interactiveStream = new ByteArrayInputStream(consoleInputs.collect(Collectors.joining(System.lineSeparator())).getBytes());
-        System.setIn(interactiveStream);
+        populateStream(consoleInputs.collect(Collectors.joining(System.lineSeparator())));
 
         try {
             new PlayerMovementPresenter(new PlayerMovementConsoleView(battleField), battleField).init();

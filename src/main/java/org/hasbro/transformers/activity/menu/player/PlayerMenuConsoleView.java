@@ -49,7 +49,7 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
 
     @Override
     public Cybertronian getPlayer() {
-        requirePlayerDetails();
+        requiredPlayerDetails();
 
         return new CybertronResource(
             playerName,
@@ -65,7 +65,7 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
         );
     }
 
-    private void requirePlayerDetails() {
+    private void requiredPlayerDetails() {
         requireNonNull(playerName);
         requireNonNull(gender);
         requireNonNull(riflePower);

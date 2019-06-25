@@ -9,9 +9,9 @@ import static org.hasbro.transformers.utils.MessageWriter.ColorMode.*;
 import static org.hasbro.transformers.utils.MessageWriter.*;
 
 public class FightMenuPresenter implements Presenter, FightView.Navigator, FightStrategy {
+    private FightView fightView;
     private Cybertronian player;
     private Cybertronian enemy;
-    private FightView fightView;
 
     public FightMenuPresenter(FightView fightView, Cybertronian player, Cybertronian enemy) {
         this.player = player;

@@ -13,12 +13,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 
-import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import static org.hasbro.transformers.integration.FeatureUtils.populateStream;
+import static org.hasbro.transformers.integration.FeatureUtils.resetStream;
 import static org.hasbro.transformers.utils.MessageReader.resetScanner;
 import static org.hasbro.transformers.utils.StreamUtils.mapAsMenuOptions;
 import static org.mockito.ArgumentMatchers.any;
@@ -77,10 +78,9 @@ public class MainMenuFeatureSteps implements En {
             "0",
             System.lineSeparator()
         );
-        
+
         String joined = String.join(System.lineSeparator(), inputs);
-        ByteArrayInputStream interactiveStream = new ByteArrayInputStream(joined.getBytes());
-        System.setIn(interactiveStream);
+        populateStream(joined);
 
         when(TransformersRPGFactory.playerMenuPresenter()).thenCallRealMethod();
         when(TransformersRPGFactory.playerMovementPresenter(any())).thenCallRealMethod().thenReturn(playerMovementPresenter);
@@ -99,7 +99,7 @@ public class MainMenuFeatureSteps implements En {
 
     @After
     public void afterScenario() {
-        System.setIn(System.in);
+        resetStream();
     }
 
     private void mockBattleLoadMode() {
@@ -115,13 +115,12 @@ public class MainMenuFeatureSteps implements En {
     private void choosePlayerBattleType(String menuOption) {
         Map<String, Integer> mainMenuMappings = mapAsMenuOptions(MainMenu.values());
         String joined = mainMenuMappings.get(menuOption).toString() + System.lineSeparator();
-        ByteArrayInputStream interactiveStream = new ByteArrayInputStream(joined.getBytes());
-        System.setIn(interactiveStream);
+        populateStream(joined);
 
         try {
             new MainMenuPresenter(new MainMenuConsoleView()).init();
         } catch (NoSuchElementException e) {
-            // End of test data
+            // Do nothing, end of test data input
         }
     }
 }

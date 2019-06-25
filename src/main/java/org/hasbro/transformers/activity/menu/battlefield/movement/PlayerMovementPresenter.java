@@ -13,8 +13,8 @@ import static org.hasbro.transformers.utils.RPGSettings.shouldPrettyPrint;
 import static org.hasbro.transformers.utils.StreamUtils.evaluateTernaryViaSupplier;
 
 public class PlayerMovementPresenter implements Presenter, PlayerMovementView.Navigator {
-    private Battlefield battleField;
-    private PlayerMovementView playerMovementView;
+    private final Battlefield battleField;
+    private final PlayerMovementView playerMovementView;
 
     public PlayerMovementPresenter(PlayerMovementConsoleView playerMovementView, Battlefield battleField) {
         this.battleField = battleField;

@@ -2,7 +2,7 @@
 
 ## Interacting with the game
   * **INSTALL**
-    * Slow - *(You want to ensure everything is working!)*
+    * Slow *(You want to ensure everything is working!)*
       - **``mvn clean install``**
     * Fast *(You are desperate to play the game ASAP!)*
       - **``mvn clean install -DskipTests``**

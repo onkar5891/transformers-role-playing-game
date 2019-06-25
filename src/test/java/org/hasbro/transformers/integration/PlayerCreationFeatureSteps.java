@@ -13,10 +13,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 
-import java.io.ByteArrayInputStream;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import static org.hasbro.transformers.integration.FeatureUtils.populateStream;
+import static org.hasbro.transformers.integration.FeatureUtils.resetStream;
 import static org.hasbro.transformers.utils.MessageReader.resetScanner;
 import static org.hasbro.transformers.utils.StreamUtils.mapAsMenuOptions;
 import static org.junit.Assert.assertTrue;
@@ -59,7 +60,7 @@ public class PlayerCreationFeatureSteps implements En {
 
     @After
     public void afterScenario() {
-        System.setIn(System.in);
+        resetStream();
     }
 
     private void loadIncompleteInformation(DataTable dataTable) {
@@ -89,14 +90,13 @@ public class PlayerCreationFeatureSteps implements En {
 
     private void triggerPlayerMenuFlow(String[] playerCreationInputs) {
         String joined = String.join(System.lineSeparator(), playerCreationInputs);
-        ByteArrayInputStream interactiveStream = new ByteArrayInputStream(joined.getBytes());
-        System.setIn(interactiveStream);
+        populateStream(joined);
 
         try {
             playerMenuPresenter = new PlayerMenuPresenter(new PlayerMenuConsoleView());
             playerMenuPresenter.init();
         } catch (NoSuchElementException e) {
-            // End of test data
+            // Do nothing, end of test data input
         }
     }
 

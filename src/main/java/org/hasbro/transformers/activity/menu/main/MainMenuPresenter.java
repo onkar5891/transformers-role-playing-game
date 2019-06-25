@@ -8,7 +8,7 @@ import org.hasbro.transformers.utils.RPGSettings;
 import static org.hasbro.transformers.utils.MessageWriter.println;
 
 public class MainMenuPresenter implements Presenter, MainMenuView.Navigator {
-    private MainMenuView view;
+    private final MainMenuView view;
 
     public MainMenuPresenter(MainMenuView view) {
         this.view = view;
