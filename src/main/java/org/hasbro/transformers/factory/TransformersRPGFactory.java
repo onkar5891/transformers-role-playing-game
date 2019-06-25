@@ -26,7 +26,7 @@ public class TransformersRPGFactory {
         return new MainMenuPresenter(new MainMenuConsoleView());
     }
 
-    public static Presenter characterPresenter() {
+    public static Presenter playerMenuPresenter() {
         return new PlayerMenuPresenter(new PlayerMenuConsoleView());
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.hasbro.transformers.utils.MessageWriter.println;
 
-public final class BattlefieldStateSerializer implements GameStateSerializer<List<List<Cybertronian>>> {
+public class BattlefieldStateSerializer implements GameStateSerializer<List<List<Cybertronian>>> {
     private static volatile BattlefieldStateSerializer instance;
 
     private BattlefieldStateSerializer() {

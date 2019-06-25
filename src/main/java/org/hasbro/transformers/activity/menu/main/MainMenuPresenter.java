@@ -22,7 +22,7 @@ public class MainMenuPresenter implements Presenter, MainMenuView.Navigator {
 
     @Override
     public void onGameStart() {
-        TransformersRPGFactory.characterPresenter().init();
+        TransformersRPGFactory.playerMenuPresenter().init();
     }
 
     @Override

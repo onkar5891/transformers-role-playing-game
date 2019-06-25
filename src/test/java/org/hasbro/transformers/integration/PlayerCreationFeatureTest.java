@@ -10,7 +10,7 @@ import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/player-creation.feature")
+@CucumberOptions(features = "src/test/resources/player-creation-flow.feature")
 @PrepareForTest(TransformersRPGFactory.class)
 public class PlayerCreationFeatureTest {
 }

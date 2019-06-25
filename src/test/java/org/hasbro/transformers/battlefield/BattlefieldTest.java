@@ -15,8 +15,7 @@ import java.util.List;
 import static org.hasbro.transformers.RPGTestData.anAutobot;
 import static org.hasbro.transformers.RPGTestData.createStructureOneOnOne;
 import static org.hasbro.transformers.utils.MessageWriter.println;
-import static org.hasbro.transformers.utils.RPGSettings.megatron;
-import static org.hasbro.transformers.utils.RPGSettings.restoreBattlefield;
+import static org.hasbro.transformers.utils.RPGSettings.*;
 import static org.junit.Assert.*;
 
 public class BattlefieldTest {

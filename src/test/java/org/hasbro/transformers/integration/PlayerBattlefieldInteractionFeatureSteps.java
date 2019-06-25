@@ -2,9 +2,7 @@ package org.hasbro.transformers.integration;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java8.En;
 import org.hasbro.transformers.activity.menu.battlefield.Battlefield;
 import org.hasbro.transformers.activity.menu.battlefield.fight.FightMode;
 import org.hasbro.transformers.activity.menu.battlefield.movement.Movement;
@@ -27,13 +25,60 @@ import static org.hasbro.transformers.utils.MessageReader.resetScanner;
 import static org.hasbro.transformers.utils.RPGSettings.freePath;
 import static org.junit.Assert.*;
 
-public class PlayerBattlefieldInteractionFeatureSteps {
+public class PlayerBattlefieldInteractionFeatureSteps implements En {
     private final Cybertronian player = anAutobot();
     private final Cybertronian legendaryPlayer = aLegendaryAutobot();
     private final CybertronResource amateurDecepticon = anAmateurDecepticon();
     private final CybertronResource decepticon = aDecepticon();
     private final CybertronResource legendaryDecepticon = aLegendaryDecepticon();
     private Battlefield battleField;
+
+    public PlayerBattlefieldInteractionFeatureSteps() {
+        Given(
+            "^A one on one battlefield$",
+            this::createOneOnOneBattlefield
+        );
+
+        Given(
+            "^A one on one battlefield with amateur decepticon and normal autobot$",
+            this::createOneOnOneBattlefieldWithAmateurDecepticonAndNormalAutobot
+        );
+
+        Given(
+            "^A one on one battlefield with legendary decepticon and normal autobot$",
+            this::createOneOnOneBattlefieldWithLegendaryDecepticonAndNormalAutobot
+        );
+
+        When(
+            "^Player moves on the battlefield with sequences \"([^\"]*)\"$",
+            this::movePlayerOnTheBattlefield
+        );
+
+        When(
+            "^Player moves next to the enemy with sequences \"([^\"]*)\" and consistently attacks the enemy who is on \"([^\"]*)\" side$",
+            this::forcePlayerToConsistentlyAttackTheEnemy
+        );
+
+        When(
+            "^Player moves with sequences \"([^\"]*)\" and consistently stays still next to enemy who is on \"([^\"]*)\" side$",
+            this::forcePlayerToConsistentlyStaysStill
+        );
+
+        Then(
+            "^Final position of the player is Row: \"([^\"]*)\", Column: \"([^\"]*)\"$",
+            this::assertFinalPositionOfPlayer
+        );
+
+        Then(
+            "^Player should defeat the enemy$",
+            this::assertPlayerWins
+        );
+
+        Then(
+            "^Player should be defeated by the enemy$",
+            this::assertPlayerLooses
+        );
+    }
 
     @Before
     public void beforeScenario() {
@@ -45,8 +90,7 @@ public class PlayerBattlefieldInteractionFeatureSteps {
         System.setIn(System.in);
     }
 
-    @Given("A one on one battlefield")
-    public void onOnOneBattlefield() {
+    private void createOneOnOneBattlefield() {
         battleField = Battlefield.restore(
             Arrays.asList(
                 Arrays.asList(decepticon, freePath(), freePath()),
@@ -56,8 +100,7 @@ public class PlayerBattlefieldInteractionFeatureSteps {
         );
     }
 
-    @Given("A one on one battlefield with amateur decepticon and normal autobot")
-    public void oneOnOneBattlefieldWithAmateurDecepticonAndNormalAutobot() {
+    private void createOneOnOneBattlefieldWithAmateurDecepticonAndNormalAutobot() {
         battleField = Battlefield.restore(
             Arrays.asList(
                 Arrays.asList(amateurDecepticon, freePath(), freePath()),
@@ -67,8 +110,7 @@ public class PlayerBattlefieldInteractionFeatureSteps {
         );
     }
 
-    @Given("A one on one battlefield with legendary decepticon and normal autobot")
-    public void aOneOnOneBattlefieldWithLegendaryDecepticonAndNormalAutobot() {
+    private void createOneOnOneBattlefieldWithLegendaryDecepticonAndNormalAutobot() {
         battleField = Battlefield.restore(
             Arrays.asList(
                 Arrays.asList(legendaryDecepticon, freePath(), freePath()),
@@ -78,8 +120,7 @@ public class PlayerBattlefieldInteractionFeatureSteps {
         );
     }
 
-    @When("Player moves on the battlefield with sequences \"([^\"]*)\"")
-    public void playerMovesOnTheBattlefield(String sequences) {
+    private void movePlayerOnTheBattlefield(String sequences) {
         String[] splitSequences = sequences.split(",");
         Map<String, Integer> mappedMenuOptions = StreamUtils.mapAsMenuOptions(Movement.values());
 
@@ -94,8 +135,7 @@ public class PlayerBattlefieldInteractionFeatureSteps {
         }
     }
 
-    @When("Player moves next to the enemy with sequences \"([^\"]*)\" and consistently attacks the enemy who is on \"([^\"]*)\" side")
-    public void playerConsistentlyAttacksTheEnemy(String sequences, String enemyPosition) {
+    private void forcePlayerToConsistentlyAttackTheEnemy(String sequences, String enemyPosition) {
         String[] splitSequences = sequences.split(",");
         String[] playerFightModes = { "ATTACK", "ATTACK" };
         Stream<String> consoleInputs = prepareConsoleStream(enemyPosition, splitSequences, playerFightModes);
@@ -110,8 +150,7 @@ public class PlayerBattlefieldInteractionFeatureSteps {
         }
     }
 
-    @When("Player moves with sequences \"([^\"]*)\" and consistently stays still next to enemy who is on \"([^\"]*)\" side")
-    public void playerConsistentlyStaysStill(String sequences, String enemyPosition) {
+    private void forcePlayerToConsistentlyStaysStill(String sequences, String enemyPosition) {
         String[] splitSequences = sequences.split(",");
         String[] playerFightModes = { "STAY_STILL", "STAY_STILL" };
         Stream<String> consoleInputs = prepareConsoleStream(enemyPosition, splitSequences, playerFightModes);
@@ -126,21 +165,18 @@ public class PlayerBattlefieldInteractionFeatureSteps {
         }
     }
 
-    @Then("Final position of the player is Row: \"([^\"]*)\", Column: \"([^\"]*)\"")
-    public void assertFinalPositionOfPlayer(int row, int column) {
+    private void assertFinalPositionOfPlayer(int row, int column) {
         Position playerPosition = battleField.findPlayerPosition();
         assertEquals(row, playerPosition.getRow());
         assertEquals(column, playerPosition.getColumn());
     }
 
-    @Then("Player should defeat the enemy")
-    public void playerShouldDefeatTheEnemy() {
+    private void assertPlayerWins() {
         assertTrue(legendaryPlayer.isAlive());
         assertFalse(amateurDecepticon.isAlive());
     }
 
-    @Then("Player should be defeated by the enemy")
-    public void playerShouldBeDefeatedByTheEnemy() {
+    private void assertPlayerLooses() {
         assertFalse(player.isAlive());
         assertTrue(legendaryDecepticon.isAlive());
     }

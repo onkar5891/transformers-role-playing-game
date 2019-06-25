@@ -16,7 +16,7 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
     private MenuChooser<Gender> genderMenuChooser = new MenuChooser<>("Choose Gender", Gender.values());
     private Navigator navigator;
 
-    private String characterName;
+    private String playerName;
     private Gender gender;
     private Integer riflePower;
     private Float rifleAccuracy;
@@ -27,7 +27,7 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
 
     @Override
     public void show() {
-        characterName = NAME_QUESTION.ask();
+        playerName = NAME_QUESTION.ask();
 
         genderMenuChooser.load();
         gender = genderMenuChooser.getItem();
@@ -52,7 +52,7 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
         requirePlayerDetails();
 
         return new CybertronResource(
-            characterName,
+            playerName,
             gender,
             AUTOBOT,
             Arrays.asList(
@@ -66,7 +66,7 @@ public class PlayerMenuConsoleView implements PlayerMenuView {
     }
 
     private void requirePlayerDetails() {
-        requireNonNull(characterName);
+        requireNonNull(playerName);
         requireNonNull(gender);
         requireNonNull(riflePower);
         requireNonNull(rifleAccuracy);

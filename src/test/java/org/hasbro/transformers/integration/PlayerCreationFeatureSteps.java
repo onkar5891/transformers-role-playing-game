@@ -2,8 +2,7 @@ package org.hasbro.transformers.integration;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java8.En;
 import io.cucumber.datatable.DataTable;
 import org.hasbro.transformers.activity.menu.battlefield.movement.PlayerMovementPresenter;
 import org.hasbro.transformers.activity.menu.player.Gender;
@@ -24,11 +23,33 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
-public class PlayerCreationFeatureSteps {
+public class PlayerCreationFeatureSteps implements En {
     private PlayerMenuPresenter playerMenuPresenter;
 
     @Mock
     private PlayerMovementPresenter playerMovementPresenter;
+
+    public PlayerCreationFeatureSteps() {
+        When(
+            "^Player's complete information is given$",
+            this::loadCompleteInformation
+        );
+
+        When(
+            "^Player's incomplete information is given$",
+            this::loadIncompleteInformation
+        );
+
+        Then(
+            "^Placing the player on battlefield should trigger battlefield view$",
+            () -> verify(playerMovementPresenter).init()
+        );
+
+        Then(
+            "^Placing the player on battlefield should be erroneous$",
+            this::assertErroneousGameState
+        );
+    }
 
     @Before
     public void beforeScenario() {
@@ -41,15 +62,13 @@ public class PlayerCreationFeatureSteps {
         System.setIn(System.in);
     }
 
-    @When("Player's incomplete information is given")
-    public void incompletePlayerInformation(DataTable dataTable) {
+    private void loadIncompleteInformation(DataTable dataTable) {
         Map<String, String> playerMappings = dataTable.asMap(String.class, String.class);
         String[] playerCreationInputs = createIncompleteInputsFrom(playerMappings);
         triggerPlayerMenuFlow(playerCreationInputs);
     }
 
-    @Then("Placing the player on battlefield should be erroneous")
-    public void tryBeginningTheBattle() {
+    private void assertErroneousGameState() {
         boolean erroneous = false;
         try {
             playerMenuPresenter.onPlayerCreated();
@@ -59,19 +78,13 @@ public class PlayerCreationFeatureSteps {
         assertTrue(erroneous);
     }
 
-    @When("Player's complete information is given")
-    public void playerSCompleteInformationIsGiven(DataTable dataTable) {
+    private void loadCompleteInformation(DataTable dataTable) {
         PowerMockito.mockStatic(TransformersRPGFactory.class);
         PowerMockito.when(TransformersRPGFactory.playerMovementPresenter(any())).thenReturn(playerMovementPresenter);
 
         Map<String, String> playerMappings = dataTable.asMap(String.class, String.class);
         String[] playerCreationInputs = createCompleteInputsFrom(playerMappings);
         triggerPlayerMenuFlow(playerCreationInputs);
-    }
-
-    @Then("Placing the player on battlefield should trigger battlefield view")
-    public void placingThePlayerOnBattlefieldShouldTriggerBattlefieldView() {
-        verify(playerMovementPresenter).init();
     }
 
     private void triggerPlayerMenuFlow(String[] playerCreationInputs) {
